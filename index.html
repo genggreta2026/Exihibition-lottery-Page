@@ -12,9 +12,9 @@ body{
   min-height: 100vh;
 }
 .main{
-  max-width: 400px;
+  max-width: 420px;
   margin: 0 auto;
-  background:#ffffff;
+  background:#fff;
   border-radius: 24px;
   padding: 30px 24px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.07);
@@ -22,64 +22,37 @@ body{
 h1{
   text-align:center;
   font-size: 26px;
-  font-weight: bold;
-  color: #222;
+  font-weight:bold;
+  color:#222;
   margin-bottom: 28px;
 }
 
-/* 滑动奖品样式 */
-.swipe-container {
-  margin: 0 auto 35px;
-  text-align: center;
-  user-select: none;
+/* 九宫格样式 */
+.prize-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 35px;
 }
-.swipe-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
+.prize-item{
   background: #fafbfc;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.swipe-slide {
-  display: flex;
-  transition: transform 0.35s ease;
-}
-.swipe-item {
-  min-width: 100%;
-  padding: 35px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-.swipe-item img {
-  width: 75%;
-  max-height: 190px;
-  object-fit: contain;
-  border-radius: 14px;
-}
-.swipe-item .txt {
-  font-size: 17px;
-  font-weight: bold;
-  color: #333;
+  border-radius: 16px;
+  padding: 12px;
   text-align: center;
-  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+.prize-item img{
+  width: 100%;
+  height: 85px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 8px;
 }
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #d8d8d8;
-}
-.dot.active {
-  background: #ff3a3a;
+.prize-item .txt{
+  font-size: 12px;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 /* 抽奖按钮 */
@@ -91,7 +64,7 @@ h1{
   border-radius: 50px;
   padding: 18px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight:bold;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(255,58,58,0.25);
   transition: all 0.2s;
@@ -105,10 +78,10 @@ h1{
   text-align:center;
   font-size: 20px;
   font-weight:bold;
-  color: #ff3a3a;
+  color:#ff3a3a;
   margin-top: 22px;
-  line-height: 1.5;
-  min-height: 30px;
+  line-height:1.5;
+  min-height:30px;
 }
 </style>
 </head>
@@ -117,41 +90,41 @@ h1{
 <div class="main">
   <h1>KAI展会幸运抽奖</h1>
 
-  <!-- 奖品滑动展示 -->
-  <div class="swipe-container">
-    <div class="swipe-wrapper">
-      <div class="swipe-slide" id="slide">
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/1.jpg">
-          <div class="txt">一等奖：Apple iPhone 17 Pro Max</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/2.jpg">
-          <div class="txt">二等奖：500 USAD 保证金</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/3.jpg">
-          <div class="txt">三等奖：10 USAD 保证金</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/4.jpg">
-          <div class="txt">四等奖：KAI品牌定制帽子</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/5.jpg">
-          <div class="txt">五等奖：KAI品牌T恤</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/6.jpg">
-          <div class="txt">六等奖：5 USAD 保证金</div>
-        </div>
-        <div class="swipe-item">
-          <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/7.jpg">
-          <div class="txt">七等奖：1 USAD 保证金</div>
-        </div>
-      </div>
+  <!-- 九宫格奖品展示 -->
+  <div class="prize-grid">
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/1.jpg">
+      <div class="txt">iPhone 17 Pro Max</div>
     </div>
-    <div class="dots" id="dots"></div>
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/2.jpg">
+      <div class="txt">500 USAD保证金</div>
+    </div>
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/3.jpg">
+      <div class="txt">10 USAD保证金</div>
+    </div>
+
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/4.jpg">
+      <div class="txt">定制帽子</div>
+    </div>
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/5.jpg">
+      <div class="txt">品牌T恤</div>
+    </div>
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/6.jpg">
+      <div class="txt">5 USAD保证金</div>
+    </div>
+
+    <div class="prize-item">
+      <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/7.jpg">
+      <div class="txt">1 USAD保证金</div>
+    </div>
+    <!-- 空格子占位，保持九宫格整齐 -->
+    <div class="prize-item"></div>
+    <div class="prize-item"></div>
   </div>
 
   <button class="draw-btn" onclick="startDraw()">开始抽奖</button>
@@ -159,4 +132,21 @@ h1{
 </div>
 
 <script>
-// 滑动逻辑
+// 抽奖逻辑（无限测试版，无限制）
+function startDraw() {
+  // 奖池已剔除 iPhone
+  let prizePool = [
+    ...Array(889).fill("七等奖：1 USAD 保证金"),
+    ...Array(50).fill("六等奖：5 USAD 保证金"),
+    ...Array(20).fill("五等奖：KAI 品牌 T 恤"),
+    ...Array(20).fill("四等奖：KAI 品牌定制帽子"),
+    ...Array(10).fill("三等奖：10 USAD 保证金"),
+    ...Array(10).fill("二等奖：500 USAD 保证金")
+  ];
+
+  let winPrize = prizePool[Math.floor(Math.random() * prizePool.length)];
+  document.getElementById("result").innerText = "恭喜您中奖：" + winPrize;
+}
+</script>
+</body>
+</html>
