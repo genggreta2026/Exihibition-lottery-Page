@@ -3,21 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>展会抽奖</title>
+<title>KAI展会幸运抽奖</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
-body{background:#f7f8fa;padding:20px}
-.main{max-width:420px;margin:0 auto;background:#fff;border-radius:20px;padding:25px;box-shadow:0 0 15px rgba(0,0,0,0.05)}
-h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333}
-.form-box{margin-bottom:20px}
-.form-box input{width:100%;padding:12px 15px;margin:8px 0;border:1px solid #ddd;border-radius:10px;font-size:15px}
-.draw-btn{width:100%;background:#ff3a3a;color:white;border:none;border-radius:30px;padding:15px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:20px}
-.draw-btn:disabled{background:#ccc}
-.result{text-align:center;font-size:18px;font-weight:bold;color:#ff3a3a;margin-top:15px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+body{
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
+  padding: 25px 15px;
+  min-height: 100vh;
+}
+.main{
+  max-width: 400px;
+  margin: 0 auto;
+  background:#ffffff;
+  border-radius: 24px;
+  padding: 30px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
+h1{
+  text-align:center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 28px;
+}
 
+/* 滑动奖品样式 */
 .swipe-container {
-  max-width: 360px;
-  margin: 30px auto;
+  margin: 0 auto 35px;
   text-align: center;
   user-select: none;
 }
@@ -25,9 +37,8 @@ h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333}
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  border: 2px solid #eee;
-  background: #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  background: #fafbfc;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .swipe-slide {
   display: flex;
@@ -35,61 +46,84 @@ h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333}
 }
 .swipe-item {
   min-width: 100%;
-  padding: 30px 20px;
-  box-sizing: border-box;
+  padding: 35px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 16px;
 }
 .swipe-item img {
-  width:80%;max-height:180px;object-fit:contain;border-radius:12px;
+  width: 75%;
+  max-height: 190px;
+  object-fit: contain;
+  border-radius: 14px;
 }
 .swipe-item .txt {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   color: #333;
+  text-align: center;
+  line-height: 1.4;
 }
 .dots {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
+  background: #d8d8d8;
 }
 .dot.active {
-  background: #ff5722;
+  background: #ff3a3a;
+}
+
+/* 抽奖按钮 */
+.draw-btn{
+  width: 100%;
+  background: linear-gradient(90deg, #ff3a3a 0%, #ff5e5e 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255,58,58,0.25);
+  transition: all 0.2s;
+}
+.draw-btn:active{
+  transform: scale(0.97);
+}
+
+/* 中奖结果 */
+.result{
+  text-align:center;
+  font-size: 20px;
+  font-weight:bold;
+  color: #ff3a3a;
+  margin-top: 22px;
+  line-height: 1.5;
+  min-height: 30px;
 }
 </style>
 </head>
-<body>
 
+<body>
 <div class="main">
   <h1>KAI展会幸运抽奖</h1>
 
-  <form>
-    <div class="form-box">
-      <input type="text" placeholder="请输入姓名">
-      <input type="tel" placeholder="请输入11位手机号">
-      <input type="email" placeholder="请输入邮箱">
-      <input type="hidden" id="prizeResult">
-    </div>
-  </form>
-
-  <!-- 手动滑动奖品 -->
+  <!-- 奖品滑动展示 -->
   <div class="swipe-container">
     <div class="swipe-wrapper">
       <div class="swipe-slide" id="slide">
         <div class="swipe-item">
           <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/1.jpg">
-          <div class="txt">一等奖：iPhone 17 Pro Max</div>
+          <div class="txt">一等奖：Apple iPhone 17 Pro Max</div>
         </div>
         <div class="swipe-item">
           <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/2.jpg">
@@ -101,11 +135,11 @@ h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333}
         </div>
         <div class="swipe-item">
           <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/4.jpg">
-          <div class="txt">四等奖：定制帽子</div>
+          <div class="txt">四等奖：KAI品牌定制帽子</div>
         </div>
         <div class="swipe-item">
           <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/5.jpg">
-          <div class="txt">五等奖：品牌 T 恤</div>
+          <div class="txt">五等奖：KAI品牌T恤</div>
         </div>
         <div class="swipe-item">
           <img src="https://genggreta2026.github.io/Exihibition-lottery-Page/images/6.jpg">
@@ -126,60 +160,3 @@ h1{text-align:center;font-size:22px;margin-bottom:20px;color:#333}
 
 <script>
 // 滑动逻辑
-const slide = document.getElementById('slide');
-const dotsBox = document.getElementById('dots');
-const items = document.querySelectorAll('.swipe-item');
-let current = 0;
-const total = items.length;
-
-for(let i=0; i<total; i++){
-  const d = document.createElement('div');
-  d.className = 'dot';
-  d.onclick = () => { current = i; update(); }
-  dotsBox.appendChild(d);
-}
-const dots = document.querySelectorAll('.dot');
-
-function update(){
-  slide.style.transform = `translateX(-${current * 100}%)`;
-  dots.forEach((o,i) => o.classList.toggle('active', i===current));
-}
-
-let startX = 0;
-slide.addEventListener('touchstart', e=> startX = e.touches[0].clientX);
-slide.addEventListener('touchend', e=> {
-  const move = e.changedTouches[0].clientX - startX;
-  if(move > 50 && current > 0) current--;
-  if(move < -50 && current < total-1) current++;
-  update();
-});
-update();
-
-// 抽奖逻辑（已剔除 iPhone）
-function startDraw() {
-  if(localStorage.getItem("hasDraw")){
-    alert("每人仅限抽奖一次！");
-    return;
-  }
-
-  // 真实奖池（无iPhone）
-  let prizePool = [
-    ...Array(889).fill("七等奖：1 USAD 保证金"),
-    ...Array(50).fill("六等奖：5 USAD 保证金"),
-    ...Array(20).fill("五等奖：KAI 品牌 T 恤"),
-    ...Array(20).fill("四等奖：KAI 品牌定制帽子"),
-    ...Array(10).fill("三等奖：10 USAD 保证金"),
-    ...Array(10).fill("二等奖：500 USAD 保证金")
-  ];
-
-  let winPrize = prizePool[Math.floor(Math.random() * prizePool.length)];
-  document.getElementById("result").innerText = "恭喜您中奖：" + winPrize;
-  document.getElementById("prizeResult").value = winPrize;
-
-  localStorage.setItem("hasDraw", "true");
-  document.querySelector(".draw-btn").disabled = true;
-  document.querySelector(".draw-btn").innerText = "已抽奖（每人一次）";
-}
-</script>
-</body>
-</html>
